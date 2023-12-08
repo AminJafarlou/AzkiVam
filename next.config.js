@@ -56,6 +56,12 @@ const nextConfig = {
               pathname: '/**',
               hostname: 'patriscarpet.com',
             },
+            {
+              port: '',
+              protocol: 'https',
+              pathname: '/**',
+              hostname: 'shimali.ir',
+            },
           ],
     },
 }
