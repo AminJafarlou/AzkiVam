@@ -14,7 +14,7 @@ export function ProductCard({ name, minPrice, imageUrl }: ProductCardProps) {
       </div>
 
       <div className="my-3 flex w-full flex-col justify-start">
-        <p>{name}</p>
+        <p className="line-clamp-2">{name}</p>
       </div>
 
       <div className="flex w-full flex-col justify-start">
