@@ -2,7 +2,7 @@ import { BASE_URL } from "@/core/constants";
 import { Category } from "@/core/types";
 import { CategoryItem } from "../CategoryItem";
 import { LineSeparator } from "../LineSeparator";
-import { MerchantItem, MerchantItemProps } from "../MerchantItem";
+import { MerchantsList } from "../MerchantsList";
 
 export async function Sidebar() {
   const categories = await fetch(`${BASE_URL}categories`);
@@ -22,10 +22,10 @@ export async function Sidebar() {
   const { data: merchantsList } = await merchants.json();
 
   return (
-    <section className="flex flex-col w-150 bg-white rounded-md px-8 py-2 ml-12">
-      <h1 className="mb-4">فیلترها</h1>
+    <section className="w-150 bg-white rounded-md px-4 py-2 ml-12">
+      <h1 className="mb-4 text-xl">فیلترها</h1>
 
-      <h2 className="mb-2">دسته‌بندی‌ها</h2>
+      <h2 className="mb-2 text-lg">دسته‌بندی‌ها</h2>
       {organizedCats.map((item) => (
         <CategoryItem
           id={item.id}
@@ -42,10 +42,9 @@ export async function Sidebar() {
 
       <LineSeparator />
 
-      <h2 className="mb-2">فروشگاه‌ها</h2>
-      {merchantsList.map((item: MerchantItemProps) => (
-        <MerchantItem name={item.name} id={item.id} />
-      ))}
+      <MerchantsList
+        list={merchantsList}
+      />
     </section>
   );
 }

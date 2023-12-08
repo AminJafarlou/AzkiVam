@@ -1,4 +1,5 @@
 import { Category } from "@/core/types";
+import Link from "next/link";
 
 interface CategoryProp extends Category {
   subCategories: Category[];
@@ -6,10 +7,14 @@ interface CategoryProp extends Category {
 
 export function CategoryItem({ name, subCategories }: CategoryProp) {
   return (
-    <div>
+    <div className="mt-2">
       <p className="text-slate-700 font-sans">{name}</p>
       {subCategories.map((cat) => {
-        return <p className="text-slate-500 font-sans">{cat.name}</p>;
+        return (
+          <Link href={`${cat.id}`}>
+            <p className="text-slate-500 font-sans">{cat.name}</p>
+          </Link>
+        );
       })}
     </div>
   );

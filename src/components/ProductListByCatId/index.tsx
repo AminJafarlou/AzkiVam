@@ -1,14 +1,13 @@
 "use client";
 
-import { getProducts } from "@/core/services";
+import { getProductsByCategoryId } from "@/core/services";
 import { ProductType } from "@/core/types";
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { EmptyView } from "../EmptyView";
 import { LoadingView } from "../LoadingView";
 import { ProductCard } from "../ProductCard";
 
-function ProductsList() {
+function ProductsListByCatId({ categoryId }: { categoryId: number }) {
   const page = 1;
   const size = 10;
 
@@ -16,17 +15,13 @@ function ProductsList() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const searchParams = useSearchParams();
-  const merchantIds = searchParams.get("merchantIds");
-  console.log({ merchantIds });
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setError(null);
         setLoading(true);
 
-        const result = await getProducts(size, page, merchantIds);
+        const result = await getProductsByCategoryId(size, page, categoryId);
         setProducts(result.data);
       } catch (error) {
         setError("Error fetching products. Please try again.");
@@ -57,4 +52,4 @@ function ProductsList() {
   );
 }
 
-export { ProductsList };
+export { ProductsListByCatId };
