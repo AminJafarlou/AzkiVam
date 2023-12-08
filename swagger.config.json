@@ -1,0 +1,8 @@
+[
+  {
+    "url": "https://interview-api.azkiloan.com/api-docs",
+    "dir": "./src/core/services",
+    "reactHooks": true,
+    "generateEnumAsType": true
+  }
+]
