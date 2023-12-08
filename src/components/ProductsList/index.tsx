@@ -36,6 +36,7 @@ function ProductsList() {
     fetchProducts();
   }, []);
 
+  // Infinite Loading
   const isScrolled = useScrollPercentage(0.9);
   useEffect(() => {
     const loadMoreData = async () => {
@@ -60,8 +61,13 @@ function ProductsList() {
     }
   }, [isScrolled, page]);
 
+  console.log({ loading });
+
   return (
-    <section className="flex flex-1 bg-white rounded-md p-8 r-5">
+    <section
+      className="flex flex-1 bg-white rounded-md p-8 r-5"
+      style={{ minHeight: "90vh" }}
+    >
       {loading ? (
         <LoadingView />
       ) : (
@@ -70,10 +76,10 @@ function ProductsList() {
             <EmptyView />
           ) : (
             <>
-              {products.map((product) => (
-                <ProductCard {...product} key={product.id} />
+              {products.map((product, index) => (
+                <ProductCard {...product} key={index} />
               ))}
-              {loading ? <LoadingView /> : false}
+              {loading || true ? <LoadingView /> : false}
             </>
           )}
         </div>

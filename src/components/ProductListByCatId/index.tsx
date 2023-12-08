@@ -36,6 +36,7 @@ function ProductsListByCatId({ categoryId }: { categoryId: number }) {
     fetchProducts();
   }, []);
 
+  // Infinite Loading
   const isScrolled = useScrollPercentage(0.9);
   useEffect(() => {
     const loadMoreData = async () => {
@@ -69,8 +70,8 @@ function ProductsListByCatId({ categoryId }: { categoryId: number }) {
           {products && products.length === 0 ? (
             <EmptyView />
           ) : (
-            products.map((product) => (
-              <ProductCard {...product} key={product.id} />
+            products.map((product, index) => (
+              <ProductCard {...product} key={index} />
             ))
           )}
         </div>

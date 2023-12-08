@@ -30,7 +30,7 @@ export function CategoryItem({ name, subCategories }: CategoryProp) {
         ? subCategories.map((cat) => {
             return (
               <Link href={`${cat.id}`}>
-                <p className="text-slate-500 font-sans">{cat.name}</p>
+                <p className="text-slate-500 font-sans ms-2">{cat.name}</p>
               </Link>
             );
           })
