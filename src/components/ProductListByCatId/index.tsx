@@ -62,21 +62,29 @@ function ProductsListByCatId({ categoryId }: { categoryId: number }) {
   }, [isScrolled, page]);
 
   return (
-    <section className="flex flex-1 bg-white rounded-md p-8 r-5">
-      {loading ? (
-        <LoadingView />
-      ) : (
-        <div className="flex flex-wrap justify-between">
-          {products && products.length === 0 ? (
-            <EmptyView />
-          ) : (
-            products.map((product, index) => (
-              <ProductCard {...product} key={index} />
-            ))
-          )}
-        </div>
-      )}
-    </section>
+    <section
+    className="flex flex-1 bg-white rounded-md r-5"
+    style={{ minHeight: "90vh" }}
+  >
+    {loading && products.length === 0 ? (
+      <LoadingView />
+    ) : (
+      <div className="flex flex-1 justify-between">
+        {products && products.length === 0 ? (
+          <EmptyView />
+        ) : (
+          <div className="flex flex-1 flex-col p-px rounded-md">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-px">
+              {products.map((product, index) => (
+                <ProductCard {...product} key={index} />
+              ))}
+            </div>
+            {isScrolled && size * page < totalItems ? <LoadingView /> : false}
+          </div>
+        )}
+      </div>
+    )}
+  </section>
   );
 }
 

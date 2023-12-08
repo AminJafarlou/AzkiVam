@@ -29,8 +29,8 @@ export function CategoryItem({ name, subCategories }: CategoryProp) {
       {isOpen
         ? subCategories.map((cat) => {
             return (
-              <Link href={`${cat.id}`}>
-                <p className="text-slate-500 font-sans ms-2">{cat.name}</p>
+              <Link href={`/${cat.id}/${cat.slug}`}>
+                <p className="text-slate-500 font-sans">{cat.name}</p>
               </Link>
             );
           })

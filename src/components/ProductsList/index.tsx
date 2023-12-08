@@ -48,11 +48,8 @@ function ProductsList() {
           ...newProducts,
         ]);
         setPage((prevPage) => prevPage + 1);
-        setLoading(true);
       } catch (error) {
         setError("Error fetching data");
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -61,26 +58,26 @@ function ProductsList() {
     }
   }, [isScrolled, page]);
 
-  console.log({ loading });
-
   return (
     <section
-      className="flex flex-1 bg-white rounded-md p-8 r-5"
+      className="flex flex-1 bg-white rounded-md r-5"
       style={{ minHeight: "90vh" }}
     >
-      {loading ? (
+      {loading && products.length === 0 ? (
         <LoadingView />
       ) : (
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-1 justify-between">
           {products && products.length === 0 ? (
             <EmptyView />
           ) : (
-            <>
-              {products.map((product, index) => (
-                <ProductCard {...product} key={index} />
-              ))}
-              {loading || true ? <LoadingView /> : false}
-            </>
+            <div className="flex flex-1 flex-col p-px bg-slate-600 rounded-md">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-px">
+                {products.map((product, index) => (
+                  <ProductCard {...product} key={index} />
+                ))}
+              </div>
+              {isScrolled && size * page < totalItems ? <LoadingView /> : false}
+            </div>
           )}
         </div>
       )}
