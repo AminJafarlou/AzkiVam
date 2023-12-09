@@ -23,7 +23,7 @@ export function CategoryItem({ name, subCategories }: CategoryProp) {
         onClick={toggleAccordion}
       >
         <p className="text-slate-700 font-sans">{name}</p>
-        {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
+        {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
       </div>
       {isOpen
         ? subCategories.map((cat) => {

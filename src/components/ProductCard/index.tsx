@@ -6,9 +6,7 @@ interface ProductCardProps extends ProductType {}
 
 export function ProductCard({ name, minPrice, imageUrl }: ProductCardProps) {
   return (
-    <div
-      className="flex flex-1 flex-col h-96 min-w-60 items-center p-4 cursor-pointer bg-white"
-    >
+    <div className="flex flex-1 flex-col h-96 min-w-60 items-center p-4 cursor-pointer bg-white">
       <div className="flex flex-1 h-40 w-52 items-center justify-center">
         <Image alt={name} width={150} height={200} src={imageUrl} />
       </div>

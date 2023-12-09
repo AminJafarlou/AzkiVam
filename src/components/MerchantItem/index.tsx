@@ -1,11 +1,10 @@
 "use client";
 
-
 export interface MerchantItemProps {
   id: number;
   name: string;
   isChecked: boolean;
-  onClick: ()=> void
+  onClick: () => void;
 }
 
 export function MerchantItem({
@@ -14,7 +13,6 @@ export function MerchantItem({
   onClick,
   isChecked,
 }: MerchantItemProps) {
-
   return (
     <div key={id} onClick={onClick} className="flex h-6 items-center">
       <input

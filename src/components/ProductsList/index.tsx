@@ -11,7 +11,8 @@ import { ProductCard } from "../ProductCard";
 const size = 10;
 
 function ProductsList({ merchantIds }: { merchantIds: string }) {
-  const _merchantIds = merchantIds?.split(",").map(item => Number(item)) || [];
+  const _merchantIds =
+    merchantIds?.split(",").map((item) => Number(item)) || [];
 
   const [page, setPage] = useState<number>(1);
   const [totalItems, setTotalItems] = useState<number>(0);

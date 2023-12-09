@@ -10,8 +10,15 @@ import { ProductCard } from "../ProductCard";
 
 const size = 10;
 
-function ProductsListByCatId({ categoryId, merchantIds }: { categoryId: number; merchantIds: string }) {
-  const _merchantIds = merchantIds?.split(",").map(item => Number(item)) || [];
+function ProductsListByCatId({
+  categoryId,
+  merchantIds,
+}: {
+  categoryId: number;
+  merchantIds: string;
+}) {
+  const _merchantIds =
+    merchantIds?.split(",").map((item) => Number(item)) || [];
 
   const [page, setPage] = useState<number>(1);
   const [totalItems, setTotalItems] = useState<number>(0);
@@ -25,7 +32,12 @@ function ProductsListByCatId({ categoryId, merchantIds }: { categoryId: number; 
         setError(null);
         setLoading(true);
 
-        const result = await getProductsByCategoryId(size, 1, categoryId, _merchantIds);
+        const result = await getProductsByCategoryId(
+          size,
+          1,
+          categoryId,
+          _merchantIds,
+        );
         setProducts(result.data);
         setTotalItems(result.totalItems);
       } catch (error) {
@@ -43,7 +55,12 @@ function ProductsListByCatId({ categoryId, merchantIds }: { categoryId: number; 
   useEffect(() => {
     const loadMoreData = async () => {
       try {
-        const newData = await getProductsByCategoryId(size, page, categoryId, _merchantIds);
+        const newData = await getProductsByCategoryId(
+          size,
+          page,
+          categoryId,
+          _merchantIds,
+        );
         const newProducts = newData.data as ProductType[];
         setProducts((prevProducts: ProductType[]) => [
           ...prevProducts,

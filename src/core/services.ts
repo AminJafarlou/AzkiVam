@@ -3,7 +3,7 @@ import { BASE_URL } from "./constants";
 export async function getProducts(
   size: number,
   page: number,
-  merchantIds?: number[] | null
+  merchantIds?: number[] | null,
 ): Promise<any> {
   const queryParams = new URLSearchParams({
     size: size.toString(),
@@ -29,7 +29,7 @@ export async function getProductsByCategoryId(
   size: number,
   page: number,
   categoryId: number,
-  merchantIds?: number[] | null
+  merchantIds?: number[] | null,
 ): Promise<any> {
   const queryParams = new URLSearchParams({
     size: size.toString(),
