@@ -12,6 +12,7 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-modern-drawer": "^1.2.2",
     "react-spinners": "^0.13.8",
     "tabler-icons-react": "^1.56.0"
   },

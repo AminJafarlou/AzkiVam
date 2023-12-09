@@ -11,7 +11,7 @@ export async function Sidebar() {
   const { data: merchantsList } = await merchants.json();
 
   return (
-    <section className="w-52 ml-12 relative">
+    <section className="hidden lg:block w-52 ml-12 relative">
       <div className="fixed bg-white rounded-md px-4 py-2">
         <h1 className="mb-4 text-xl">فیلترها</h1>
 

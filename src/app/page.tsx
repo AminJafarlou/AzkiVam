@@ -1,3 +1,4 @@
+import { MobileSidebar } from "@/components/MobileSidebar";
 import { ProductsList } from "@/components/ProductsList";
 import { Sidebar } from "@/components/Sidebar";
 import { Roboto } from "next/font/google";
@@ -10,10 +11,11 @@ const roboto = Roboto({
 
 
 export default function Home({searchParams}:{searchParams: {merchantIds :string}}) {
-  const className = `${roboto.className} flex p-4`
+  const className = `${roboto.className} flex flex-col lg:flex-row p-4`
   return (
     <main className={className}>
       <Sidebar />
+      <MobileSidebar />
 
       <ProductsList 
         merchantIds={searchParams.merchantIds}
