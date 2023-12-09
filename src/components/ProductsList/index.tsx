@@ -11,8 +11,6 @@ import { ProductCard } from "../ProductCard";
 const size = 10;
 
 function ProductsList({ merchantIds }: { merchantIds: string }) {
-  console.log({merchantIds});
-  
   const _merchantIds = merchantIds?.split(",").map(item => Number(item)) || [];
 
   const [page, setPage] = useState<number>(1);
@@ -22,13 +20,12 @@ function ProductsList({ merchantIds }: { merchantIds: string }) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setPage(1);
     const fetchProducts = async () => {
       try {
         setError(null);
         setLoading(true);
 
-        const result = await getProducts(size, page, _merchantIds);
+        const result = await getProducts(size, 1, _merchantIds);
         setProducts(result.data);
         setTotalItems(result.totalItems);
       } catch (error) {

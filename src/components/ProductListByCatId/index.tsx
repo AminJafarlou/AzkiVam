@@ -20,13 +20,12 @@ function ProductsListByCatId({ categoryId, merchantIds }: { categoryId: number; 
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setPage(1);
     const fetchProducts = async () => {
       try {
         setError(null);
         setLoading(true);
 
-        const result = await getProductsByCategoryId(size, page, categoryId, _merchantIds);
+        const result = await getProductsByCategoryId(size, 1, categoryId, _merchantIds);
         setProducts(result.data);
         setTotalItems(result.totalItems);
       } catch (error) {
