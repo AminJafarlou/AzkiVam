@@ -8,8 +8,12 @@ import { EmptyView } from "../EmptyView";
 import { LoadingView } from "../LoadingView";
 import { ProductCard } from "../ProductCard";
 
-function ProductsList() {
-  const size = 10;
+const size = 10;
+
+function ProductsList({ merchantIds }: { merchantIds: string }) {
+  console.log({merchantIds});
+  
+  const _merchantIds = merchantIds?.split(",").map(item => Number(item)) || [];
 
   const [page, setPage] = useState<number>(1);
   const [totalItems, setTotalItems] = useState<number>(0);
@@ -18,12 +22,13 @@ function ProductsList() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setPage(1);
     const fetchProducts = async () => {
       try {
         setError(null);
         setLoading(true);
 
-        const result = await getProducts(size, page);
+        const result = await getProducts(size, page, _merchantIds);
         setProducts(result.data);
         setTotalItems(result.totalItems);
       } catch (error) {
@@ -34,14 +39,14 @@ function ProductsList() {
     };
 
     fetchProducts();
-  }, []);
+  }, [merchantIds]);
 
   // Infinite Loading
   const isScrolled = useScrollPercentage(0.9);
   useEffect(() => {
     const loadMoreData = async () => {
       try {
-        const newData = await getProducts(size, page);
+        const newData = await getProducts(size, page, _merchantIds);
         const newProducts = newData.data as ProductType[];
         setProducts((prevProducts: ProductType[]) => [
           ...prevProducts,
@@ -70,7 +75,7 @@ function ProductsList() {
           {products && products.length === 0 ? (
             <EmptyView />
           ) : (
-            <div className="flex flex-1 flex-col p-px bg-slate-600 rounded-md">
+            <div className="flex flex-1 flex-col p-px bg-slate-100 rounded-md">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-px">
                 {products.map((product, index) => (
                   <ProductCard {...product} key={index} />

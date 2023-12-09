@@ -27,18 +27,17 @@ export function MerchantsList({ list }: Props) {
     const handleClick = (clickedId: number) => {
       let newIdList = []
       if (activeMerchantIds.includes(clickedId)) {
-        newIdList = activeMerchantIds.filter(id => id === clickedId);
+        newIdList = activeMerchantIds.filter(id => id !== clickedId);
       } else {
         newIdList = [...activeMerchantIds, clickedId]
       }
 
       setActiveMerchantIds(newIdList);
-
-      const query = activeMerchantIds.length > 0 
+      
+      const query = newIdList.length > 0 
         ? `?merchantIds=${newIdList.join(",")}` 
         : "";
       router.push(`${pathname}${query}`);
-
     }
 
   return (

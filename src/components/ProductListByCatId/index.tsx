@@ -44,7 +44,7 @@ function ProductsListByCatId({ categoryId, merchantIds }: { categoryId: number; 
   useEffect(() => {
     const loadMoreData = async () => {
       try {
-        const newData = await getProductsByCategoryId(size, page, categoryId);
+        const newData = await getProductsByCategoryId(size, page, categoryId, _merchantIds);
         const newProducts = newData.data as ProductType[];
         setProducts((prevProducts: ProductType[]) => [
           ...prevProducts,
@@ -76,7 +76,7 @@ function ProductsListByCatId({ categoryId, merchantIds }: { categoryId: number; 
           {products && products.length === 0 ? (
             <EmptyView />
           ) : (
-            <div className="flex flex-1 flex-col p-px bg-slate-600 rounded-md">
+            <div className="flex flex-1 flex-col p-px bg-slate-100 rounded-md">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-px">
                 {products.map((product, index) => (
                   <ProductCard {...product} key={index} />

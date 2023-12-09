@@ -9,13 +9,15 @@ const roboto = Roboto({
 
 
 
-export default function Home() {
+export default function Home({searchParams}:{searchParams: {merchantIds :string}}) {
   const className = `${roboto.className} flex p-4`
   return (
     <main className={className}>
       <Sidebar />
 
-      <ProductsList />
+      <ProductsList 
+        merchantIds={searchParams.merchantIds}
+      />
     </main>
   );
 }
