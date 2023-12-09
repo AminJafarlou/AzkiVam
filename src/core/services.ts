@@ -3,29 +3,19 @@ import { BASE_URL } from "./constants";
 export async function getProducts(
   size: number,
   page: number,
-  merchantIds?: string | null
+  merchantIds?: number[] | null
 ): Promise<any> {
   const queryParams = new URLSearchParams({
     size: size.toString(),
     page: page.toString(),
-    // merchantIds: "1, 2",
   });
-
-  // const requestBody = new URLSearchParams();
-
-  // if (merchantIds && merchantIds.length > 0) {
-  //   requestBody.append(
-  //     "merchantIds",
-  //     merchantIds === null ? "" : merchantIds?.toString()
-  //   );
-  // }
 
   const fullUrl = `${BASE_URL}products?${queryParams.toString()}`;
 
   const response = await fetch(fullUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    // body: requestBody,
+    body: JSON.stringify({ merchantIds }),
   });
 
   if (!response.ok) {
@@ -39,29 +29,19 @@ export async function getProductsByCategoryId(
   size: number,
   page: number,
   categoryId: number,
-  merchantIds?: string | null
+  merchantIds?: number[] | null
 ): Promise<any> {
   const queryParams = new URLSearchParams({
     size: size.toString(),
     page: page.toString(),
-    merchantIds: "1, 2",
   });
-
-  // const requestBody = new URLSearchParams();
-
-  // if (merchantIds && merchantIds.length > 0) {
-  //   requestBody.append(
-  //     "merchantIds",
-  //     merchantIds === null ? "" : merchantIds?.toString()
-  //   );
-  // }
 
   const fullUrl = `${BASE_URL}products/${categoryId}/?${queryParams.toString()}`;
 
   const response = await fetch(fullUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    // body: requestBody,
+    body: JSON.stringify({ merchantIds }),
   });
 
   if (!response.ok) {

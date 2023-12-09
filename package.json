@@ -12,7 +12,8 @@
     "next": "14.0.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "tabler-icons-react": "^1.56.0"
   },
   "devDependencies": {
     "@types/node": "^20",

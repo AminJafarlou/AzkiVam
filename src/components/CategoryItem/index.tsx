@@ -3,6 +3,7 @@
 import { Category } from "@/core/types";
 import Link from "next/link";
 import { useState } from "react";
+import { ChevronDown, ChevronUp } from "tabler-icons-react";
 
 interface CategoryProp extends Category {
   subCategories: Category[];
@@ -22,9 +23,7 @@ export function CategoryItem({ name, subCategories }: CategoryProp) {
         onClick={toggleAccordion}
       >
         <p className="text-slate-700 font-sans">{name}</p>
-        <p className="text-slate-700 font-sans">
-          {isOpen ? "\u2303" : "\u2304"}
-        </p>
+        {isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}
       </div>
       {isOpen
         ? subCategories.map((cat) => {
