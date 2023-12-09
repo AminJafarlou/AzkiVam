@@ -8,8 +8,10 @@ import { EmptyView } from "../EmptyView";
 import { LoadingView } from "../LoadingView";
 import { ProductCard } from "../ProductCard";
 
-function ProductsListByCatId({ categoryId }: { categoryId: number }) {
-  const size = 10;
+const size = 10;
+
+function ProductsListByCatId({ categoryId, merchantIds }: { categoryId: number; merchantIds: string }) {
+  const _merchantIds = merchantIds?.split(",").map(item => Number(item)) || [];
 
   const [page, setPage] = useState<number>(1);
   const [totalItems, setTotalItems] = useState<number>(0);
@@ -18,12 +20,13 @@ function ProductsListByCatId({ categoryId }: { categoryId: number }) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setPage(1);
     const fetchProducts = async () => {
       try {
         setError(null);
         setLoading(true);
 
-        const result = await getProductsByCategoryId(size, page, categoryId);
+        const result = await getProductsByCategoryId(size, page, categoryId, _merchantIds);
         setProducts(result.data);
         setTotalItems(result.totalItems);
       } catch (error) {
@@ -34,7 +37,7 @@ function ProductsListByCatId({ categoryId }: { categoryId: number }) {
     };
 
     fetchProducts();
-  }, []);
+  }, [merchantIds]);
 
   // Infinite Loading
   const isScrolled = useScrollPercentage(0.9);
