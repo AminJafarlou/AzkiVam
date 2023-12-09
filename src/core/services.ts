@@ -8,7 +8,7 @@ export async function getProducts(
   const queryParams = new URLSearchParams({
     size: size.toString(),
     page: page.toString(),
-    merchantIds: "1, 2",
+    // merchantIds: "1, 2",
   });
 
   // const requestBody = new URLSearchParams();
