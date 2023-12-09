@@ -11,7 +11,8 @@ const roboto = Roboto({
 
 
 export default function Home({searchParams}:{searchParams: {merchantIds :string}}) {
-  const className = `${roboto.className} flex flex-col lg:flex-row p-4`
+  const className = `${roboto.className} flex flex-col lg:flex-row p-4`;
+  
   return (
     <main className={className}>
       <Sidebar />
